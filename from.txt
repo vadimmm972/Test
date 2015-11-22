@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml.Serialization;
+using System.IO;
+
+namespace MegaProg
+{
+    public partial class Form1 : Form
+    {
+        Random rnd = new Random(DateTime.Now.Millisecond);
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+       
+
+        private void button1_MouseClick_1(object sender, MouseEventArgs e)
+        {
+           
+            StreamWriter sw = new StreamWriter(@"C:\Users\Timas_000\Desktop\New Text Document.txt");
+            for (int i = 0; i < 500; i++)
+            {
+				string str = "insert into tbl_Sale(ID_Sale, ID_Book, DateOfSale, Price, Quantity, ID_Shop)";
+				sw.WriteLine(str);
+				str = "values";
+				sw.WriteLine(str);
+                DateTime dat = new DateTime(2015, rnd.Next(1, 10), rnd.Next(1, 29));
+                str = "(syc_Sale.nextval, " + rnd.Next(1, 54).ToString() + ", '" + dat.Year.ToString() + "." + dat.Month.ToString() + "." + dat.Day.ToString() + 
+                    "'"
+				+ ", " + rnd.Next(200, 2001) + ", " + rnd.Next(1, 41) + 
+                    ", " + rnd.Next(1, 23) + "' ),";
+                sw.WriteLine(str);
+            }
+            sw.Close();
+        }
+
+       
+    }
+}
